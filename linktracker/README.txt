@@ -25,3 +25,4 @@ so when you're signed up you will receive a direct download link to your email.
 Thank you for downloading the SLT "Simple Link Tracker" with PHP and MySQL.
 
 in order for the installer to work it has to be inside the app folder!
+and if you're placing linktracker inside a subfolder then you must edit class/config and insert it manually later.

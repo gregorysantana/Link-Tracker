@@ -1,0 +1,128 @@
+<?php
+
+  //Include MySQL Database Connection.
+  require_once "class/require.php";
+
+
+
+  //visitor data
+  $slt_useragent = $_SERVER['HTTP_USER_AGENT'];
+  $slt_ipaddr = $_SERVER['REMOTE_ADDR'];
+  $slt_regerral = $_SERVER['HTTP_REFERER'];
+
+
+  //tracking data  
+  $track = $_GET["src"];
+
+  if($track == '') {
+    //do something
+  } else {
+    $get_tracking = mysql_query("SELECT * FROM links WHERE slt_link_trackingid = '$track'");
+    while($row = mysql_fetch_assoc($get_tracking)) {
+      $slt_link_url = $row["slt_link_url"];
+      $slt_link_baseurl = $row["slt_link_baseurl"];
+      $slt_link_trackingid = $row["slt_link_trackingid"];
+        //here we check for Unique visitors...
+        $get_visitor = mysql_query("SELECT * FROM tracking WHERE slt_tracking_ipaddr = '$slt_ipaddr' AND slt_tracking_trackid = '$slt_link_trackingid'");
+          $get_visitor_amount = mysql_num_rows($get_visitor);
+            if($get_visitor_amount > 0) {
+              //if this user has already visited the following link already.
+              //goto update; <- remove // if you want to update if this ip has already visited.
+              header("Location: ".$slt_link_baseurl);
+            } else {
+              update:
+              //if this user has not visited.
+              $insertdata = mysql_query("INSERT INTO tracking (slt_tracking_trackid, slt_tracking_ipaddr, slt_tracking_referral, slt_tracking_useragent) VALUES ('$slt_link_trackingid', '$slt_ipaddr', '$slt_regerral', '$slt_useragent')");
+              //update total visits
+              $insertdata = mysql_query("UPDATE links SET slt_link_total = slt_link_total + 1 WHERE slt_link_trackingid = '$slt_link_trackingid'");
+              //redirect user
+              header("Location: ".$slt_link_baseurl);
+            }
+    }
+  }
+
+
+
+if(isset($_COOKIE['usr'])) { 
+
+$email = $_COOKIE['usr'];  
+$pass = $_COOKIE['key'];    
+$check = mysql_query("SELECT * FROM users WHERE slt_user_email = '$email'")or die(mysql_error());  
+
+while($info = mysql_fetch_array( $check )) {     
+
+    if ($pass != $info['password']) {             
+
+    }     else      {       
+        header("Location: mypanel.php");      
+    }     } } 
+
+ if (isset($_POST['submit'])) { 
+  if(!$_POST['email'] | !$_POST['pass']) {
+    die('You did not fill in a required field.');
+  }
+
+  if (!get_magic_quotes_gpc()) {
+    $_POST['email'] = addslashes($_POST['email']);
+  }
+
+  $check = mysql_query("SELECT * FROM users WHERE slt_user_email = '".$_POST['email']."'")or die(mysql_error());
+  $check2 = mysql_num_rows($check);
+
+  if ($check2 == 0) {
+      die('That user does not exist in our database.');
+  }
+
+ while($info = mysql_fetch_array( $check )) {
+
+  $_POST['pass'] = stripslashes($_POST['pass']);
+  $info['slt_user_password'] = stripslashes($info['slt_user_password']);
+  $_POST['pass'] = ($_POST['pass']);
+
+  if ($_POST['pass'] != $info['slt_user_password']) {
+    die('Incorrect password, please try again.');
+  } else { 
+
+  $_POST['email'] = stripslashes($_POST['email']); 
+  $hour = time() + 3600; 
+
+ setcookie(usr, $_POST['email'], $hour, '/'.$app_path); 
+ setcookie(key, $_POST['pass'], $hour, '/'.$app_path);  
+ header("Location: mypanel.php"); 
+} } } else {  
+
+  
+?><form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+<html>
+<head>
+    <title>Simple Link Tracker</title>
+    <link href="/<?php echo $app_path; ?>css/jquery-ui.css" rel="stylesheet">
+    <link href="/<?php echo $app_path; ?>css/font-awesome.css" rel="stylesheet">
+    <link href="/<?php echo $app_path; ?>css/bootstrap.min.css" rel="stylesheet">
+    <link href="/<?php echo $app_path; ?>css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/<?php echo $app_path; ?>css/bootstrap-overrides.css" rel="stylesheet">
+</head>
+<body style="background-color: #e2f2ff;">
+
+<br><br>
+<center>
+  <h3>Simple Link Tracker</h3><br>
+ 
+
+<center>
+  <div style="background:white;border:1px solid grey; width:250px;border-radius: 4px;" class="options">
+  		<p>Sign In to Link Tracker</p>
+  		<input type="text" class="form-control" style="width:90%;border-radius: 2px; border:1px solid #c1c1c1;" name="email" placeholder="Email Address"></input><br>
+  		<input type="password" class="form-control" style="width:90%;border-radius: 2px; border:1px solid #c1c1c1;" name="pass" id="pass" placeholder="Password"></input><br>
+  		<button class="btn btn-success sebuild" id="submit" name="submit" type="submit"> Sign In</button><br><br>
+  	</form>
+  </div>
+<a target="_BLANK" style="font-size: 10px;">Simple Link Tracker</a>
+</center>
+
+
+
+</body>             
+</html>
+
+<?php } ?> 

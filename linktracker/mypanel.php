@@ -60,7 +60,7 @@ if(isset($_COOKIE['usr'])){
 
       ?>
 <div style="margin-top:75px;background:white;border:1px solid grey; width:750px;border-radius: 4px;" class="options">
-      <legend>Active Links <a class="btn btn-default btn-xs" onclick="tableview()" id="tbl" href="javascript:void(0);"><i class="fa fa-table" aria-hidden="true"></i> Table View</a><a style="display:none;" class="btn btn-default btn-xs" onclick="listview()" id="liv" href="javascript:void(0);"><i class="fa fa-table" aria-hidden="true"></i> List View</a></legend> 
+      <legend>Active Links <?php  if($track == '') { } else {?><a class="btn btn-default btn-xs" onclick="tableview()" id="tbl" href="javascript:void(0);"><i class="fa fa-table" aria-hidden="true"></i> Table View</a><a style="display:none;" class="btn btn-default btn-xs" onclick="listview()" id="liv" href="javascript:void(0);"><i class="fa fa-table" aria-hidden="true"></i> List View</a> <?php }; ?></legend> 
       <?php 
 
          if($track == '') {
@@ -69,34 +69,37 @@ if(isset($_COOKIE['usr'])){
 
         } else {
 
-          $get_tracking = mysql_query("SELECT * FROM tracking WHERE slt_tracking_trackid = '$track' LIMIT 0, 25");
-          $get_tracking_table = mysql_query("SELECT * FROM tracking WHERE slt_tracking_trackid = '$track' LIMIT 0, 125");
+          $get_tracking = mysql_query("SELECT * FROM tracking WHERE slt_tracking_trackid = '$track' ORDER BY slt_tracking_time DESC LIMIT 0, 25");
+          $get_tracking_table = mysql_query("SELECT * FROM tracking WHERE slt_tracking_trackid = '$track' ORDER BY slt_tracking_time DESC LIMIT 0, 125");
           $get_links = mysql_query("SELECT * FROM links WHERE slt_link_userid = '$userid'");
           $get_link = mysql_fetch_assoc($get_links);
           $get_tracking_amount = mysql_num_rows($get_tracking);
-            echo '<h4>Link:</h4> <p style="font-style:italic;">'.$get_link["slt_link_baseurl"].'</p>';
-            echo '<h4>Tracking:</h4> <p style="font-style:italic;">'.$get_link["slt_link_url"].'</p><br>';
-            echo '<b>Unique Visitors:</b> '.$get_tracking_amount.'<br><br>';
+           
+            echo '<table class="table"><thead><tr><th>Link</th><th>Tracking Link</th><th style="white-space:nowrap;">Unique Visitors</th></tr></thead>
+                  <tbody><tr><td style="font-style:italic;">'.$get_link["slt_link_baseurl"].'</td>';
+            echo '<td style="font-style:italic;">'.$get_link["slt_link_url"].'</td>';
+            echo '<td style="white-space:nowrap;">'.$get_tracking_amount.'</td></tr></tbody></table><br><br>';
 
-          echo '<div id="listview">';
+          echo '<div id="listview">
+                25 Newest visitors';
           while($row = mysql_fetch_assoc($get_tracking)) {
             echo '<div class="well" style="text-align:left;">';
             echo '<p><b>IP Address: </b>'.$row["slt_tracking_ipaddr"].' <a class="btn btn-warning btn-xs" target="_blank" href="http://ip-api.com/#'.$row["slt_tracking_ipaddr"].'">Lookup <i style="font-size: 10px;" class="fa fa-external-link" aria-hidden="true"></i></a></p>';
           if($row["slt_tracking_useragent"] == '') { 
             echo '<p style="color:#a52424;"><b>Unresolved useragent.</b></p>';
           } else {
-            echo '<p><b>Useragent: </b>'.$row["slt_tracking_useragent"].'</p>';
+            echo '<p><b>Useragent: </b>'.substr($row["slt_tracking_useragent"],0, 200).'</p>';
           }
           if($row["slt_tracking_referral"] == '') {
             echo '<p style="color:#a52424;"><b>Possibly a Direct Hit</b></p>';
           } else {
-            echo '<p><b>Referral:</b> '.$row["slt_tracking_referral"].' <a class="btn btn-default btn-xs" target="_blank" href="'.$row["slt_tracking_referral"].'">Visit</a> <a class="btn btn-default btn-xs" target="_blank" href="https://whois.domaintools.com/'.$row["slt_tracking_referral"].'">Whois</a></p>';            
+            echo '<p><b>Referral:</b> '.substr($row["slt_tracking_referral"],0, 50).' <a class="btn btn-default btn-xs" target="_blank" href="'.$row["slt_tracking_referral"].'">Visit</a> <a class="btn btn-default btn-xs" target="_blank" href="https://whois.domaintools.com/'.$row["slt_tracking_referral"].'">Whois</a></p>';            
           }
             echo '<p><b>Vsisit Time: </b>'.$row["slt_tracking_time"].'</p>';
             echo '</div>';
         }
         echo '</div>';
-         echo '<div style="display:none;" id="tableview">';
+         echo '<div style="display:none;" id="tableview">125 Newest visitors';
           echo '<table class="table">';
           echo '<thead>';
           echo '<tr>

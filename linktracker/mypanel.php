@@ -31,6 +31,97 @@ if(isset($_COOKIE['usr'])){
     <link href="/<?php echo $app_path; ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="/<?php echo $app_path; ?>css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="/<?php echo $app_path; ?>css/bootstrap-overrides.css" rel="stylesheet">
+    <?php
+    $get_tracking_charts = mysql_query("SELECT * FROM tracking WHERE slt_tracking_trackid = '$track' ORDER BY slt_tracking_time DESC");
+    while($row = mysql_fetch_assoc($get_tracking_charts)) {
+      $tref = $row["slt_tracking_referral"];
+    }
+    $direct = mysql_query("SELECT * FROM tracking 
+      WHERE slt_tracking_trackid = '$track' 
+      AND slt_tracking_referral = '' 
+      ORDER BY slt_tracking_time DESC"); 
+
+    $organic = mysql_query("SELECT * FROM tracking
+      WHERE slt_tracking_trackid = '$track' 
+      AND slt_tracking_referral 
+      LIKE '%google%'
+      OR slt_tracking_referral 
+      LIKE '%yahoo%'
+      OR slt_tracking_referral 
+      LIKE '%bing%'
+      OR slt_tracking_referral 
+      LIKE '%ask%'
+      OR slt_tracking_referral 
+      LIKE '%duckduckgo%'
+      ORDER BY slt_tracking_time DESC"); 
+
+    $social = mysql_query("SELECT * FROM tracking 
+      WHERE slt_tracking_trackid = '$track' 
+      AND slt_tracking_referral 
+      LIKE '%facebook%' 
+      OR  slt_tracking_referral
+      LIKE '%twitter%'
+      OR slt_tracking_referral
+      LIKE '%instagram%'
+      ORDER BY slt_tracking_time DESC"); 
+
+    $direct_total = mysql_num_rows($direct);
+    $organic_total = mysql_num_rows($organic);
+    $social_total = mysql_num_rows($social);
+
+    ?>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Visits', 'Total'],
+          ['Social',   <?php echo $social_total ?>],
+          ['Direct',   <?php echo $direct_total ?>],
+          ['Organic',  <?php echo $organic_total ?>]
+        ]);
+
+        var options = {
+          title: '<?php  ?>'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    <script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Density", { role: "style" } ],
+        ["Social", <?php echo $social_total ?>, "#b87333"],
+        ["Direct", <?php echo $direct_total ?>, "silver"],
+        ["Organic", <?php echo $organic_total ?>, "gold"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Total Unique Visitors",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+  }
+  </script>
 </head>
 <body style="background-color: #e2f2ff;">
 
@@ -60,7 +151,7 @@ if(isset($_COOKIE['usr'])){
 
       ?>
 <div style="margin-top:75px;background:white;border:1px solid grey; width:750px;border-radius: 4px;" class="options">
-      <legend>Active Links <?php  if($track == '') { } else {?><a class="btn btn-default btn-xs" onclick="tableview()" id="tbl" href="javascript:void(0);"><i class="fa fa-table" aria-hidden="true"></i> Table View</a><a style="display:none;" class="btn btn-default btn-xs" onclick="listview()" id="liv" href="javascript:void(0);"><i class="fa fa-table" aria-hidden="true"></i> List View</a> <?php }; ?></legend> 
+      <legend><?php  if($track == '') { echo 'Active Links'; } else { ?>Your Link<?php } ?> <?php  if($track == '') { } else {?><a class="btn btn-default btn-xs" onclick="tableview()" id="tbl" href="javascript:void(0);"><i class="fa fa-table" aria-hidden="true"></i> Table View</a><a style="display:none;" class="btn btn-default btn-xs" onclick="listview()" id="liv" href="javascript:void(0);"><i class="fa fa-table" aria-hidden="true"></i> List View</a> <?php }; ?><?php  if($track == '') { } else {?> <a class="btn btn-default btn-xs" onclick="barview()" id="bchart" href="javascript:void(0);"><i class="fa fa-bar-chart" aria-hidden="true"></i> Bar Chart</a><a style="display:none;" class="btn btn-default btn-xs" onclick="cakeview()" id="pchart" href="javascript:void(0);"><i class="fa fa-pie-chart" aria-hidden="true"></i> Pie Chart</a> <?php }; ?></legend> 
       <?php 
 
          if($track == '') {
@@ -74,7 +165,8 @@ if(isset($_COOKIE['usr'])){
           $get_links = mysql_query("SELECT * FROM links WHERE slt_link_userid = '$userid'");
           $get_link = mysql_fetch_assoc($get_links);
           $get_tracking_amount = mysql_num_rows($get_tracking);
-           
+            echo '<div id="piechart" style="width: 300px; height: 200px;"></div><br>';
+            echo '<div style="display:none;" id="columnchart_values" style="width: 400px; height: 100px;"></div>';
             echo '<table class="table"><thead><tr><th>Link</th><th>Tracking Link</th><th style="white-space:nowrap;">Unique Visitors</th></tr></thead>
                   <tbody><tr><td style="font-style:italic;">'.$get_link["slt_link_baseurl"].'</td>';
             echo '<td style="font-style:italic;">'.$get_link["slt_link_url"].'</td>';
@@ -140,6 +232,18 @@ if(isset($_COOKIE['usr'])){
 
 
 <script type="text/javascript">
+function barview() {
+   $("#piechart").slideUp("mypanel.php #piechart");
+   $("#bchart").hide("mypanel.php #bchart");
+   $("#pchart").show("mypanel.php #pchart");
+   $("#columnchart_values").slideDown("mypanel.php #columnchart_values");
+}
+function cakeview() {
+   $("#columnchart_values").slideUp("mypanel.php #columnchart_values");
+   $("#pchart").hide("mypanel.php #pchart");
+   $("#bchart").show("mypanel.php #bchart");
+   $("#piechart").slideDown("mypanel.php #piechart");
+}
 function tableview() {
    $("#listview").slideUp("mypanel.php #listview");
    $("#tbl").hide("mypanel.php #tbl");

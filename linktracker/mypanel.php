@@ -69,7 +69,7 @@ if(isset($_COOKIE['usr'])){
 
         } else {
 
-          $get_tracking = mysql_query("SELECT * FROM tracking WHERE slt_tracking_trackid = '$track' ORDER BY slt_tracking_time DESC LIMIT 0, 25");
+          $get_tracking = mysql_query("SELECT * FROM tracking WHERE slt_tracking_trackid = '$track' ORDER BY slt_tracking_time DESC LIMIT 0, 125");
           $get_tracking_table = mysql_query("SELECT * FROM tracking WHERE slt_tracking_trackid = '$track' ORDER BY slt_tracking_time DESC LIMIT 0, 125");
           $get_links = mysql_query("SELECT * FROM links WHERE slt_link_userid = '$userid'");
           $get_link = mysql_fetch_assoc($get_links);
@@ -81,7 +81,7 @@ if(isset($_COOKIE['usr'])){
             echo '<td style="white-space:nowrap;">'.$get_tracking_amount.'</td></tr></tbody></table><br><br>';
 
           echo '<div id="listview">
-                25 Newest visitors';
+                Showing 125 Newest visitors';
           while($row = mysql_fetch_assoc($get_tracking)) {
             echo '<div class="well" style="text-align:left;">';
             echo '<p><b>IP Address: </b>'.$row["slt_tracking_ipaddr"].' <a class="btn btn-warning btn-xs" target="_blank" href="http://ip-api.com/#'.$row["slt_tracking_ipaddr"].'">Lookup <i style="font-size: 10px;" class="fa fa-external-link" aria-hidden="true"></i></a></p>';
@@ -99,7 +99,7 @@ if(isset($_COOKIE['usr'])){
             echo '</div>';
         }
         echo '</div>';
-         echo '<div style="display:none;" id="tableview">125 Newest visitors';
+         echo '<div style="display:none;" id="tableview"> Showing 125 Newest visitors';
           echo '<table class="table">';
           echo '<thead>';
           echo '<tr>

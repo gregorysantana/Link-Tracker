@@ -3,12 +3,24 @@
   //Include MySQL Database Connection.
   require_once "class/require.php";
 
-
-
   //visitor data
   $slt_useragent = $_SERVER['HTTP_USER_AGENT'];
   $slt_ipaddr = $_SERVER['REMOTE_ADDR'];
   $slt_regerral = $_SERVER['HTTP_REFERER'];
+
+  $query = @unserialize(file_get_contents('http://ip-api.com/php/'.$slt_ipaddr));
+
+   if($query && $query['status'] == 'success') {
+      $slt_country = $query['country'];
+      $slt_region = $query['region'];
+      $slt_city = $query['city'];
+      $slt_zip = $query['zip'];
+      $slt_lat = $query['lat'];
+      $slt_lon = $query['lon'];
+  } else {
+
+  }
+
 
 
   //tracking data  
@@ -31,8 +43,55 @@
               header("Location: ".$slt_link_baseurl);
             } else {
               update:
+
+              //BLOCK BOTS
+
+              if(strpos($_SERVER['HTTP_USER_AGENT'], 'http://help.yahoo.com/help/us/ysearch/slurp') !== false) {
+                die("Sorry, Bots are not allowed. :/");
+              }
+              if(strpos($_SERVER['HTTP_USER_AGENT'], 'Applebot') !== false) {
+                die("Sorry, Bots are not allowed. :/");
+              }
+              if(strpos($_SERVER['HTTP_USER_AGENT'], 'Twitterbot') !== false) {
+                die("Sorry, Bots are not allowed. :/");
+              }
+              if(strpos($_SERVER['HTTP_USER_AGENT'], 'facebookexternalhit') !== false) {
+                die("Sorry, Bots are not allowed. :/");
+              }
+              if(strpos($_SERVER['REMOTE_ADDR'], '31.13.114.64') !== false) {
+                die("Sorry, Bots are not allowed. :/");
+              }
+              if(strpos($_SERVER['REMOTE_ADDR'], '199.16.157.180') !== false) {
+                die("Sorry, Bots are not allowed. :/");
+              }
+              if(strpos($_SERVER['REMOTE_ADDR'], '17.142.156.211') !== false) {
+                die("Sorry, Bots are not allowed. :/");
+              }
+              if(strpos($_SERVER['REMOTE_ADDR'], '23.96.208.137') !== false) {
+                die("Sorry, Bots are not allowed. :/");
+              }
+              if(strpos($_SERVER['REMOTE_ADDR'], '72.30.14.67') !== false) {
+                die("Sorry, Bots are not allowed. :/");
+              }
+              if(strpos($_SERVER['HTTP_USER_AGENT'], 'http://l.facebook.com/lsr.php') !== false) {
+                die("Sorry, Bots are not allowed. :/");
+              }
+              if(strpos($_SERVER['HTTP_USER_AGENT'], '31.13.114.78') !== false) {
+                die("Sorry, Bots are not allowed. :/");
+              }
+              if(strpos($_SERVER['HTTP_USER_AGENT'], 'bot') !== false) {
+                die("Sorry, Bots are not allowed. :/");
+              }
+              if(strpos($_SERVER['HTTP_USER_AGENT'], 'facebook.com/lsr.php?u=') !== false) {
+                die("Sorry, Bots are not allowed. :/");
+              }
+
+
               //if this user has not visited.
-              $insertdata = mysql_query("INSERT INTO tracking (slt_tracking_trackid, slt_tracking_ipaddr, slt_tracking_referral, slt_tracking_useragent) VALUES ('$slt_link_trackingid', '$slt_ipaddr', '$slt_regerral', '$slt_useragent')");
+              $insertdata = mysql_query("INSERT INTO tracking 
+                (slt_tracking_trackid, slt_tracking_ipaddr, slt_tracking_country, slt_tracking_region, slt_tracking_city, slt_tracking_zip, slt_tracking_lat, slt_tracking_lon, slt_tracking_referral, slt_tracking_useragent) 
+                VALUES 
+                ('$slt_link_trackingid', '$slt_ipaddr', '$slt_country', '$slt_region', '$slt_city', '$slt_zip', '$slt_lat', '$slt_lon', '$slt_regerral', '$slt_useragent')");
               //update total visits
               $insertdata = mysql_query("UPDATE links SET slt_link_total = slt_link_total + 1 WHERE slt_link_trackingid = '$slt_link_trackingid'");
               //redirect user

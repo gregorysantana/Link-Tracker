@@ -77,6 +77,12 @@
                 slt_tracking_id int(11) NOT NULL AUTO_INCREMENT,
                 slt_tracking_trackid varchar(255) NOT NULL,
                 slt_tracking_ipaddr varchar(255) NOT NULL,
+                slt_tracking_country varchar(255) NOT NULL,
+                slt_tracking_region varchar(255) NOT NULL,
+                slt_tracking_city varchar(255) NOT NULL,
+                slt_tracking_zip varchar(255) NOT NULL,
+                slt_tracking_lat varchar(255) NOT NULL,
+                slt_tracking_lon varchar(255) NOT NULL,
                 slt_tracking_referral varchar(255) NOT NULL,
                 slt_tracking_useragent varchar(255) NOT NULL,
                 slt_tracking_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -110,7 +116,7 @@
     /* MySQL Database Password */   $db_pass  = \''.$db_new_pass.'\';                            
 
                       //Your full domain: http://mydomain.com/ ex: "http://mvrclabs.info/"
-                      $myhost   = \'http://'.$_SERVER['SERVER_NAME'].'/\';              
+                      $myhost   = \'http://'.$_SERVER['HTTP_HOST'].'/'.'\';              
                       //Root App Path that comes after above domain. ex: "linktracker/"
                       $app_path = \'linktracker/\';                     
 
@@ -140,11 +146,11 @@
 <html>
 <head>
     <title>Install :: Simple Link Tracker</title>
-    <link href="/<?php echo $app_path; ?>css/jquery-ui.css" rel="stylesheet">
-    <link href="/<?php echo $app_path; ?>css/font-awesome.css" rel="stylesheet">
-    <link href="/<?php echo $app_path; ?>css/bootstrap.min.css" rel="stylesheet">
-    <link href="/<?php echo $app_path; ?>css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="/<?php echo $app_path; ?>css/bootstrap-overrides.css" rel="stylesheet">
+    <link href="../css/jquery-ui.css" rel="stylesheet">
+    <link href="../css/font-awesome.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-overrides.css" rel="stylesheet">
 </head>
 <body style="background-color: #e2f2ff;">
 

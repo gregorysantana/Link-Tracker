@@ -26,3 +26,4 @@ Features:
 +Tweet, Send & Share buttons.
 +Table + List view.
 +Easy Interface.
++Track info: IP Address, Country, Region, Zip Code, Latitude, Longitude, Referral Page, Useragent, Visit Time...

@@ -10,9 +10,10 @@ user: admin@slt.com
 pass: 123123
 
 Installer would be located:
-http://mvrclabs.info/linktracker/Installer/
+http://mydomain.com/app_path/Installer/
 
-
+Something similar to this tracker can be found here:
+http://x-url.eu/
 
 
 

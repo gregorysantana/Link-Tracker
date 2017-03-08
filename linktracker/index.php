@@ -21,7 +21,12 @@
 
   }
 
-
+  //bookmark widget .php
+  $auto = $_GET["url"];
+  if($auto == 'ref') {
+    $auto = $_SERVER['HTTP_REFERER'];
+  }
+  //bookmark widget end
 
   //tracking data  
   $track = $_GET["src"];
@@ -167,6 +172,22 @@ while($info = mysql_fetch_array( $check )) {
 <center>
   <h3>Simple Link Tracker</h3><br>
  
+ <!-- Bookmark widget. -->
+  <a id="bookmarklet" href="javascript:void(window.open('http://x-url.eu/?url='+encodeURIComponent(document.URL)))" onclick="return false;">Shorten</a>
+   <div id="bookmarklet_bg">Drag and drop on Bookmark bar</div>
+
+   <style>
+   #bookmarklet { 
+      height: 90px; top: 50px; position: absolute; width: 100%; background: transparent; z-index: 10;
+      line-height: 150px; font-size: 0; font-weight: bold; text-align: center; text-decoration: none;
+      cursor: move;
+    }
+    #bookmarklet_bg { 
+      height: 90px; top: 20px; position: absolute; width: 100%; background: #34495e; border-radius: 6px; 
+      line-height: 150px; font-size: 16px; color: #fff; font-weight: bold; text-align: center; text-decoration: none;
+    }
+   </style>
+
 
 <center>
   <div style="background:white;border:1px solid grey; width:250px;border-radius: 4px;" class="options">
@@ -179,7 +200,18 @@ while($info = mysql_fetch_array( $check )) {
 <a target="_BLANK" style="font-size: 10px;">Simple Link Tracker</a>
 </center>
 
-
+<?php 
+   if($auto == '') { 
+        
+       } else {
+       echo '
+        <script type="text/javascript">
+            $(window).load(function(){
+                 $(\'#submit\').click();
+             });
+        </script>';
+       }
+   ?>
 
 </body>             
 </html>

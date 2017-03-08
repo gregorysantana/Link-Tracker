@@ -1,4 +1,4 @@
-# linktracker
+# Link Tracker
 Simple Link Tracker with PHP and MySQL
 https://marcosraudkett.com/link_tracker.html
 

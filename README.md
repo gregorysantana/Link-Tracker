@@ -28,3 +28,5 @@ Features:
 +Table + List view.
 +Easy Interface.
 +Track info: IP Address, Country, Region, Zip Code, Latitude, Longitude, Referral Page, Useragent, Visit Time...
+
++Uses ip-api.com API to receive: country, region, zip, lat, long.

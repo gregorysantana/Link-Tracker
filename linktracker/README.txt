@@ -1,37 +1,33 @@
+Tested with PHP (v5.4) and MySQL (v5.5)
+if you're running a newer version of PHP <5.4 then this link tracker will not work on your server.
+or you will have to change to MySQLi or PDO and you will end up updating the whole code.
+
 You can either use the web installer inside "installer" folder to install it.
 or you can manually do it.
 
-
-
-
 Web Installer will:
 
-	+Setup MySQL tables.
-	+Setup Configuration File.
+	+Setup/Create MySQL tables.
+	+Setup/Create Configuration File. (you might have to check the app path)
 
 it will do everything required to run this.
 
-tested with PHP and MySQL (5.5)
-
-
 if you have any questions or trouble about this then please email me at
 projects@marcosraudkett.com
-http://marcosraudkett.com/
+https://marcosraudkett.com/#join
 
 don't forget to signup to my updates, I will probably be updating this script sometime soon,
 so when you're signed up you will receive a direct download link to your email.
 
-
-Thank you for downloading the SLT "Simple Link Tracker" with PHP and MySQL.
-
-in order for the installer to work it has to be inside the app folder!
+---------------------------
+in order for the installer to work it has to be inside the app folder not outside! -> app/installer <-
 and if you're placing linktracker inside a subfolder then you must edit class/config and insert it manually later.
 
 
 Features:
 
 +Create/Delete Links
-+Analytics (Pie Chart, Bar Chart + Map Charts)
++Analytics/Statistics (Pie Chart, Bar Chart + Map Charts)
 +IP Logged only once. (unique visitors)
 +Some BOTS blocked.
 +Detect traffic source: direct, organic, social (charts)
@@ -39,3 +35,4 @@ Features:
 +Table + List view.
 +Easy Interface.
 +Track info: IP Address, Country, Region, Zip Code, Latitude, Longitude, Referral Page, Useragent, Visit Time...
++Location data provided by ip-api.com (Country, City, Region, Zip, Lat, Lon)

@@ -24,22 +24,30 @@ in order for the installer to work it has to be inside the app folder not outsid
 and if you're placing linktracker inside a subfolder then you must edit class/config and insert it manually later.
 
 
-Features:
+Current Features:
+	+Create/Delete Links
+	+Analytics/Statistics (Pie Chart, Bar Chart + Map Charts)
+	+IP Logged only once. (unique visitors)
+	+Some BOTS blocked.
+	+Detect traffic source: direct, organic, social (charts)
+	+Tweet, Send & Share buttons.
+	+Table + List view.
+	+Easy Interface.
+	+Track info: IP Address, Country, Region, Zip Code, Latitude, Longitude, Referral Page, Useragent, Visit Time...
+	+Location data provided by ip-api.com (Country, City, Region, Zip, Lat, Lon).
+	+Bookmark Widget (drag and drop to bookmark and later just hit shorten and it will shorten the page you are on).
 
-+Create/Delete Links
-+Analytics/Statistics (Pie Chart, Bar Chart + Map Charts)
-+IP Logged only once. (unique visitors)
-+Some BOTS blocked.
-+Detect traffic source: direct, organic, social (charts)
-+Tweet, Send & Share buttons.
-+Table + List view.
-+Easy Interface.
-+Track info: IP Address, Country, Region, Zip Code, Latitude, Longitude, Referral Page, Useragent, Visit Time...
-+Location data provided by ip-api.com (Country, City, Region, Zip, Lat, Lon)
+Working on:
+	+Heatmap Analytics.
+	+Mouse Movement Analytics.
+	+Shorten & Track Google Chrome Extension.
+	+Better BOT blocking & both total & unique visitors.
+	+Make all functions work with AJAX and JavaScript.
+	+Admin Panel speed.
 
 
 
-Other ---
+Other:
 
 You can easily change the "?src=longmd5hash" into "/md5hash" in .htaccess with this code:
 
@@ -49,8 +57,11 @@ You can easily change the "?src=longmd5hash" into "/md5hash" in .htaccess with t
 	RewriteRule ^(.*) index.php?src=$1 [L]
 	
 So you don't need the "?src=" part
+
 and also if you wish to make the md5 hash smaller in length just change: 
 	$hash = md5( rand( 0, 1000 ) . rand( 0, 1000 ) . rand( 0, 1000 ) . rand( 0, 1000 ) );
 into something like this:
 	$hash = substr(md5( rand( 0, 1000 ) . rand( 0, 1000 ) . rand( 0, 1000 ) . rand( 0, 1000 ) ),0, 7);
 That will decrease the length to 7 characters --------------------------------------------------------^^
+
+Check out http://x-url.eu/ <- all the same features.

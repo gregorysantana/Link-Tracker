@@ -1,19 +1,20 @@
 # linktracker
 Simple Link Tracker with PHP and MySQL
+https://marcosraudkett.com/link_tracker.html
 
 
 You can demo this @ http://mvrclabs.info/linktracker/
-Simple Link Tracker also comes with a Web Installer.
+Simple Link Tracker also comes with a Web Installer for easy installation.
 
-demo account:
+demo account for this project:
 user: admin@slt.com
 pass: 123123
 
 Installer would be located:
-http://mydomain.com/app_path/Installer/
+http://mysite.com/app-path/installer/ If installer does not work then try and change config settings.
 
 Something similar to this tracker can be found here:
-http://x-url.eu/
+http://x-url.eu/ only that x-url works without registration and saves the links to your machine. there is also a bookmark widget available.
 
 
 

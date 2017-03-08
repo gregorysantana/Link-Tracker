@@ -36,3 +36,21 @@ Features:
 +Easy Interface.
 +Track info: IP Address, Country, Region, Zip Code, Latitude, Longitude, Referral Page, Useragent, Visit Time...
 +Location data provided by ip-api.com (Country, City, Region, Zip, Lat, Lon)
+
+
+
+Other ---
+
+You can easily change the "?src=longmd5hash" into "/md5hash" in .htaccess with this code:
+
+	RewriteRule ^home?$ index.php.php?src=$1 [L]
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*) index.php?src=$1 [L]
+	
+So you don't need the "?src=" part
+and also if you wish to make the md5 hash smaller in length just change: 
+	$hash = md5( rand( 0, 1000 ) . rand( 0, 1000 ) . rand( 0, 1000 ) . rand( 0, 1000 ) );
+into something like this:
+	$hash = substr(md5( rand( 0, 1000 ) . rand( 0, 1000 ) . rand( 0, 1000 ) . rand( 0, 1000 ) ),0, 7);
+That will decrease the length by 7 characters --------------------------------------------------------^^

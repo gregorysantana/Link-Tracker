@@ -1,4 +1,5 @@
-[logo]: http://icons.iconarchive.com/icons/saki/nuoveXT/128/Actions-file-close-icon.png "x-url" # Link Tracker
+# Link Tracker
+[logo]: http://icons.iconarchive.com/icons/saki/nuoveXT/128/Actions-file-close-icon.png "x-url"
 Simple Link Tracker with PHP and MySQL
 https://marcosraudkett.com/link_tracker.html
 

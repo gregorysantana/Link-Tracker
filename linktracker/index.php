@@ -1,15 +1,15 @@
 <?php
 
-  //Include MySQL Database Connection.
+  //Include MySQL Database Connection from require.php -> config.php...
   require_once "class/require.php";
 
-  //visitor data
+  //visitor data $_SERVER
   $slt_useragent = $_SERVER['HTTP_USER_AGENT'];
   $slt_ipaddr = $_SERVER['REMOTE_ADDR'];
   $slt_regerral = $_SERVER['HTTP_REFERER'];
 
+  //ip-api.com API part..
   $query = @unserialize(file_get_contents('http://ip-api.com/php/'.$slt_ipaddr));
-
    if($query && $query['status'] == 'success') {
       $slt_country = $query['country'];
       $slt_region = $query['region'];
@@ -20,6 +20,7 @@
   } else {
 
   }
+  //ip-api.com end
 
   //bookmark widget .php
   $auto = $_GET["url"];
@@ -28,7 +29,7 @@
   }
   //bookmark widget end
 
-  //tracking data  
+  //tracking data get the link info.
   $track = $_GET["src"];
 
   if($track == '') {
@@ -39,17 +40,17 @@
       $slt_link_url = $row["slt_link_url"];
       $slt_link_baseurl = $row["slt_link_baseurl"];
       $slt_link_trackingid = $row["slt_link_trackingid"];
-        //here we check for Unique visitors...
+        //here we check for Unique visitors... we could skip this part with "goto update;"
         $get_visitor = mysql_query("SELECT * FROM tracking WHERE slt_tracking_ipaddr = '$slt_ipaddr' AND slt_tracking_trackid = '$slt_link_trackingid'");
           $get_visitor_amount = mysql_num_rows($get_visitor);
             if($get_visitor_amount > 0) {
               //if this user has already visited the following link already.
-              //goto update; <- remove // if you want to update if this ip has already visited.
+              //goto update; <- remove // if you want to update if this ip has already visited. (loss of unique visitors, all visitors will be logged even if it's the same IP Address..)
               header("Location: ".$slt_link_baseurl);
             } else {
               update:
 
-              //BLOCK BOTS
+              //BLOCK BOTS there should be a string...
 
               if(strpos($_SERVER['HTTP_USER_AGENT'], 'http://help.yahoo.com/help/us/ysearch/slurp') !== false) {
                 die("Sorry, Bots are not allowed. :/");
@@ -97,9 +98,9 @@
                 (slt_tracking_trackid, slt_tracking_ipaddr, slt_tracking_country, slt_tracking_region, slt_tracking_city, slt_tracking_zip, slt_tracking_lat, slt_tracking_lon, slt_tracking_referral, slt_tracking_useragent) 
                 VALUES 
                 ('$slt_link_trackingid', '$slt_ipaddr', '$slt_country', '$slt_region', '$slt_city', '$slt_zip', '$slt_lat', '$slt_lon', '$slt_regerral', '$slt_useragent')");
-              //update total visits
+              //update total visits row.
               $insertdata = mysql_query("UPDATE links SET slt_link_total = slt_link_total + 1 WHERE slt_link_trackingid = '$slt_link_trackingid'");
-              //redirect user
+              //redirect user to the target site.
               header("Location: ".$slt_link_baseurl);
             }
     }

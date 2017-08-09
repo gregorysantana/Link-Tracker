@@ -16,7 +16,7 @@ Installer would be located:
 http://mysite.com/app-path/installer/ If installer does not work then try and change config settings.
 
 Something similar to this tracker can be found here:
-http://x-url.eu/ only that x-url works without registration and saves the links to your machine. there is also a bookmark widget available.
+http://whx.io/ only that x-url works without registration and saves the links to your machine. there is also a bookmark widget available.
 
 
 

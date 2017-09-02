@@ -1,6 +1,7 @@
 <?php
   /*
     Simple Link Tracker Configuration. 
+    (you will not need to modify this file if you run Web Installer)
     https://marcosraudkett.com/
   */
 

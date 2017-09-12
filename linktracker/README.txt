@@ -64,4 +64,4 @@ into something like this:
 	$hash = substr(md5( rand( 0, 1000 ) . rand( 0, 1000 ) . rand( 0, 1000 ) . rand( 0, 1000 ) ),0, 7);
 That will decrease the length to 7 characters --------------------------------------------------------^^
 
-Check out http://x-url.eu/ <- all the same features.
+Check out http://whx.io/ <- all the same features.

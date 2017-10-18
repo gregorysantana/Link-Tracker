@@ -1,8 +1,13 @@
+# Works on
 Tested with PHP (v5.4) and MySQL (v5.5)
+
+# Newer Versions
 if you're running a newer version of PHP <5.4 then this link tracker will not work on your server.
 or you will have to change to MySQLi or PDO and you will end up updating the whole code.
 And if you're running on newer MySQL <5.5 then you will need to update NOT NULL fields to NULL
 
+
+# Installer
 You can either use the web installer inside "installer" folder to install it.
 or you can manually do it.
 
@@ -24,7 +29,7 @@ so when you're signed up you will receive a direct download link to your email.
 in order for the installer to work it has to be inside the app folder not outside! -> app/installer <-
 and if you're placing linktracker inside a subfolder then you must edit class/config and insert it manually later.
 
-
+# Features
 Current Features:
 	+Create/Delete Links
 	+Analytics/Statistics (Pie Chart, Bar Chart + Map Charts)
@@ -48,7 +53,7 @@ Working on:
 
 
 
-Other:
+# Other
 
 You can easily change the "?src=longmd5hash" into "/md5hash" in .htaccess with this code:
 

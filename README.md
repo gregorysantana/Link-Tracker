@@ -14,7 +14,7 @@ or you will have to change to MySQLi or PDO and you will end up updating the who
 And if you're running on newer MySQL <5.5 then you will need to update NOT NULL fields to NULL
 
 
-# Installation (installer)
+# Installation (Web installer)
 You can either use the web installer inside "installer" folder to install it.
 or you can manually do it.
 
@@ -27,13 +27,6 @@ it will do everything required to run this.
 
 Installer will be located at:
 http://mysite.com/app-path/installer/ If installer does not work then try the [manual installation](https://github.com/marcosraudkett/Link-Tracker/blob/master/README.md#installation-manual--without-installer)
-
-if you have any questions or trouble about this then please email me at
-projects@marcosraudkett.com
-https://marcosraudkett.com/#join
-
-don't forget to signup to my updates, I will probably be updating this script sometime soon,
-so when you're signed up you will receive a direct download link to your email.
 
 ---------------------------
 > in order for the installer to work it has to be inside the app folder not outside! -> app_folder/installer <-
@@ -111,11 +104,13 @@ Current Features:
 
 Working on:
 * Heatmap Analytics.
-* Mouse Movement Analytics.
-* Shorten & Track Google Chrome Extension.
 * Better BOT blocking & both total & unique visitors.
 * Make all functions work with AJAX and JavaScript.
-* Admin Panel speed.
+* Speed up the Admin Panel.
+* Password encrypted links.
+* Grab Title + Description from target link (source).
+* User can add a custom ending.
+* Feature that requires user to enable GeoLocation in order to continue.
 
 
 
@@ -137,3 +132,10 @@ So you don't need the "?src=" part
 > That will decrease the length to 7 characters ---------------------------------------------^^
 
 Check out http://whx.io/ <- all the same features.
+
+if you have any questions or trouble about this then please email me at
+projects@marcosraudkett.com
+https://marcosraudkett.com/#join
+
+don't forget to signup to my updates, I will probably be updating this script sometime soon,
+so when you're signed up you will receive a direct download link to your email.

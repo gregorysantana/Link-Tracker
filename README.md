@@ -36,16 +36,16 @@ http://mysite.com/app-path/installer/ If installer does not work then try the [m
 > works with all MySQL versions!
 1. Create 3 tables to MySQL (users, links, tracking): ([Database File](https://github.com/marcosraudkett/Link-Tracker/tree/master/linktracker/Installer/database))
  * "users" rows:
-   * slt_link_id, type: int(11), NOT NULL, auto_increment (PRIMARY KEY)
+   * slt_link_id, type: int(11), **NOT NULL**, auto_increment (PRIMARY KEY)
    * slt_link_url, type: varchar(255), NULL
    * slt_link_baseurl, type: varchar(255), NULL
    * slt_link_userid, type: varchar(255), NULL
    * slt_link_trackingid, type: varchar(255), NULL
    * slt_link_total, type: varchar(255), NULL
-   * slt_link_created, type: timestamp, NOT NULL, default: CURRENT_TIMESTAMP
+   * slt_link_created, type: timestamp, **NOT NULL**, default: CURRENT_TIMESTAMP
  * "links" rows:
-   * slt_tracking_id, type: int(11), NOT NULL, auto_increment (PRIMARY KEY)
-   * slt_tracking_trackid, type: varchar(255), NOT NULL
+   * slt_tracking_id, type: int(11), **NOT NULL**, auto_increment (PRIMARY KEY)
+   * slt_tracking_trackid, type: varchar(255), **NOT NULL**
    * slt_tracking_ipaddr, type: varchar(255), NULL
    * slt_tracking_country, type: varchar(255), NULL
    * slt_tracking_region, type: varchar(255), NULL
@@ -55,12 +55,12 @@ http://mysite.com/app-path/installer/ If installer does not work then try the [m
    * slt_tracking_lon, type: varchar(255), NULL
    * slt_tracking_referral, type: varchar(255), NULL
    * slt_tracking_useragent, type: varchar(255), NULL
-   * slt_tracking_time, type: timestamp, NOT NULL, default: CURRENT_TIMESTAMP
+   * slt_tracking_time, type: timestamp, **NOT NULL**, default: CURRENT_TIMESTAMP
  * "tracking" rows:
-   * slt_user_id, type: int(11), NOT NULL, auto_increment (PRIMARY KEY)
-   * slt_user_email, type: varchar(255), NOT NULL
-   * slt_user_password, type: varchar(255), NOT NULL
-   * slt_user_created, type: timestamp, NOT NULL, default: CURRENT_TIMESTAMP
+   * slt_user_id, type: int(11), **NOT NULL**, auto_increment (PRIMARY KEY)
+   * slt_user_email, type: varchar(255), **NOT NULL**
+   * slt_user_password, type: varchar(255), **NOT NULL**
+   * slt_user_created, type: timestamp, **NOT NULL**, default: CURRENT_TIMESTAMP
 2. Update config.php file inside class folder "class/config.php"
  * set all mysql information (hostname, username, password & name)
  * set the "mylink" path to your full domain: http://mydomain.com/
@@ -116,14 +116,14 @@ Working on:
 
 # Other
 
-You can easily change the "?src=longmd5hash" into "/md5hash" in .htaccess with this code:
+You can easily change the "**?src=longmd5hash**" into "**/md5hash**" in .htaccess with this code:
 
 	RewriteRule ^home?$ index.php.php?src=$1 [L]
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteRule ^(.*) index.php?src=$1 [L]
 	
-So you don't need the "?src=" part
+So you don't need the "**?src=**" part
 
 > and also if you wish to make the md5 hash smaller in length just change: <br>
 > $hash = md5( rand( 0, 1000 ) . rand( 0, 1000 ) . rand( 0, 1000 ) . rand( 0, 1000 ) ); <br>

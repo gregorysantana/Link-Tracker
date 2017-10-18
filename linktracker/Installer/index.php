@@ -22,21 +22,21 @@
 
    */
 
-
-  /*
-    VAR
-    You can change these below to your needs.
-  */
-
     $db_new_host = $_POST["h"];
     $db_new_username = $_POST["u"];
     $db_new_name = $_POST["n"];
     $db_new_pass = $_POST["p"];
 
+    /*
+      First Link
+      You can change these below to your needs.
+    */
 
     $sql_link_url        = 'http://mvrclabs.info/linktracker/?src=0032fb939e3425e65db3b6867ced8b80';
     $sql_link_baseurl    = 'http://marcosraudkett.com/';
     $sql_link_trackingid = '0032fb939e3425e65db3b6867ced8b80';
+
+    /* USER DETAILS */
 
     $sql_email = 'admin@slt.com';
     $sql_passw = '123123';

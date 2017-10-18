@@ -1,6 +1,7 @@
 Tested with PHP (v5.4) and MySQL (v5.5)
 if you're running a newer version of PHP <5.4 then this link tracker will not work on your server.
 or you will have to change to MySQLi or PDO and you will end up updating the whole code.
+And if you're running on newer MySQL <5.5 then you will need to update NOT NULL fields to NULL
 
 You can either use the web installer inside "installer" folder to install it.
 or you can manually do it.

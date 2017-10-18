@@ -1,4 +1,4 @@
-# Link Tracker
+# Simple Link Tracker
 
 # Works on
 Tested with PHP (v5.4) and MySQL (v5.5)

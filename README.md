@@ -108,7 +108,7 @@ Working on:
 * Make all functions work with AJAX and JavaScript.
 * Speed up the Admin Panel.
 * Password encrypted links.
-* Grab Title + Description from target link (source).
+* Grab Title + Description from target link (source). (You could modify my Gist: [Website Crawler](https://gist.github.com/marcosraudkett/fa3715752e550c2714279435217617d7) to work with Link Tracker)
 * User can add a custom ending.
 * Feature that requires user to enable GeoLocation in order to continue.
 

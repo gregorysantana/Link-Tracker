@@ -26,7 +26,7 @@ Web Installer will:
 it will do everything required to run this.
 
 Installer will be located at:
-http://mysite.com/app-path/installer/ If installer does not work then try the manual installation
+http://mysite.com/app-path/installer/ If installer does not work then try the [manual installation](https://github.com/marcosraudkett/Link-Tracker/blob/master/README.md#installation-manual--without-installer)
 
 if you have any questions or trouble about this then please email me at
 projects@marcosraudkett.com
@@ -41,7 +41,7 @@ so when you're signed up you will receive a direct download link to your email.
 
 # Installation (manual / without installer)
 
-1. Create 3 tables to MySQL:
+1. Create 3 tables to MySQL (users, links, tracking):
  * "users" rows:
    * slt_link_id, type: int(11), NOT NULL, auto_increment (PRIMARY KEY)
    * slt_link_url, type: varchar(255), NULL

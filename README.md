@@ -34,7 +34,7 @@ http://mysite.com/app-path/installer/ If installer does not work then try the [m
 
 # Installation (manual / without installer)
 > works with all MySQL versions!
-1. Create 3 tables to MySQL (users, links, tracking):
+1. Create 3 tables to MySQL (users, links, tracking): ([Database File](https://github.com/marcosraudkett/Link-Tracker/tree/master/linktracker/Installer/database))
  * "users" rows:
    * slt_link_id, type: int(11), NOT NULL, auto_increment (PRIMARY KEY)
    * slt_link_url, type: varchar(255), NULL

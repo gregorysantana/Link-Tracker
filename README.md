@@ -2,7 +2,7 @@
 
 # Works on
 Tested with PHP (v5.4) and MySQL (v5.5)
-You can demo this @ https://marcosraudkett.com/mvrclabs/linktracker/
+You can demo this @ http://mvrclabs.info/linktracker/
 
 demo account for this project:
 - user: admin@slt.com

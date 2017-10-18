@@ -67,11 +67,11 @@
 
         $install_sql_links = mysql_query('CREATE TABLE links (
                 slt_link_id int(11) NOT NULL AUTO_INCREMENT,
-                slt_link_url varchar(255) NOT NULL,
-                slt_link_baseurl varchar(255) NOT NULL,
-                slt_link_userid varchar(255) NOT NULL,
-                slt_link_trackingid varchar(255) NOT NULL,
-                slt_link_total varchar(255) NOT NULL,
+                slt_link_url varchar(255) NULL,
+                slt_link_baseurl varchar(255) NULL,
+                slt_link_userid varchar(255) NULL,
+                slt_link_trackingid varchar(255) NULL,
+                slt_link_total varchar(255) NULL,
                 slt_link_created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                 PRIMARY KEY (slt_link_id)
               )');
@@ -81,15 +81,15 @@
         $install_sql_tracking = mysql_query('CREATE TABLE tracking (
                 slt_tracking_id int(11) NOT NULL AUTO_INCREMENT,
                 slt_tracking_trackid varchar(255) NOT NULL,
-                slt_tracking_ipaddr varchar(255) NOT NULL,
-                slt_tracking_country varchar(255) NOT NULL,
-                slt_tracking_region varchar(255) NOT NULL,
-                slt_tracking_city varchar(255) NOT NULL,
-                slt_tracking_zip varchar(255) NOT NULL,
-                slt_tracking_lat varchar(255) NOT NULL,
-                slt_tracking_lon varchar(255) NOT NULL,
-                slt_tracking_referral varchar(255) NOT NULL,
-                slt_tracking_useragent varchar(255) NOT NULL,
+                slt_tracking_ipaddr varchar(255) NULL,
+                slt_tracking_country varchar(255) NULL,
+                slt_tracking_region varchar(255) NULL,
+                slt_tracking_city varchar(255) NULL,
+                slt_tracking_zip varchar(255) NULL,
+                slt_tracking_lat varchar(255) NULL,
+                slt_tracking_lon varchar(255) NULL,
+                slt_tracking_referral varchar(255) NULL,
+                slt_tracking_useragent varchar(255) NULL,
                 slt_tracking_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 PRIMARY KEY (slt_tracking_id)
               )');
@@ -113,7 +113,7 @@
     Simple Link Tracker Configuration. 
     https://marcosraudkett.com/link_tracker.html
     https://github.com/marcosraudkett/linktracker
-    Generated automatically by Installer.
+    Generated via Installer.
   */
 
 

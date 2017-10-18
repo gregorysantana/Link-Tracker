@@ -79,7 +79,7 @@ Current Features:
   * social
 * Social Buttons
   * Tweet
-  * Facebook Send
+  * Facebook Send
   * Facebook Share
 * Table + List view.
 * Easy Interface.

@@ -40,7 +40,7 @@ so when you're signed up you will receive a direct download link to your email.
 > and if you're placing linktracker inside a subfolder then you must edit class/config and insert it manually later.
 
 # Installation (manual / without installer)
-
+> works with all MySQL versions!
 1. Create 3 tables to MySQL (users, links, tracking):
  * "users" rows:
    * slt_link_id, type: int(11), NOT NULL, auto_increment (PRIMARY KEY)

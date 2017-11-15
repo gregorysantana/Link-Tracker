@@ -1,5 +1,5 @@
 <?php
-  //Include MySQL Database Connection.
+  /*Include MySQL Database Connection.*/
   require_once "class/require.php";
 if(isset($_COOKIE['usr'])){ 
         $email = $_COOKIE['usr'];  

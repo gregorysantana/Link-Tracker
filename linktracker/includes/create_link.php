@@ -42,9 +42,10 @@
 
 		//CREATE
 		$slt_link = $myhost.$app_path.'?src='.$hash;
-			
-		$inser_links = mysql_query("INSERT INTO links (slt_link_url, slt_link_baseurl, slt_link_userid, slt_link_trackingid, slt_link_total) VALUES ('$slt_link', '$link', '$user_id', '$hash', '0')");
-
+		
+		if($slt_link != '') {
+			$inser_links = mysql_query("INSERT INTO links (slt_link_url, slt_link_baseurl, slt_link_userid, slt_link_trackingid, slt_link_total) VALUES ('$slt_link', '$link', '$user_id', '$hash', '0')");
+		}
 
 		//Send user back to previous site..
 		header("Location: ".$_SERVER["HTTP_REFERER"]);

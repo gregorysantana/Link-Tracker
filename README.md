@@ -1,5 +1,10 @@
 # Simple Link Tracker
 
+## Update November 15, 2017
+Updated from MySQL to MySQLi which means
+it should also run on newer PHP versions now.
+<5.4 and MySQL aswell <5.5
+
 # Works on
 Tested with PHP (v5.4) and MySQL (v5.5)
 You can demo this @ http://mvrclabs.info/linktracker/
@@ -7,11 +12,6 @@ You can demo this @ http://mvrclabs.info/linktracker/
 demo account for this project:
 - user: admin@slt.com
 - pass: 123123
-
-# Newer Versions
-if you're running a newer version of PHP <5.4 then this link tracker will not work on your server.
-or you will have to change to MySQLi or PDO and you will end up updating the whole code.
-And if you're running on newer MySQL <5.5 then you will need to update NOT NULL fields to NULL
 
 
 # Installation (Web installer)

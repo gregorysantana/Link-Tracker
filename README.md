@@ -7,12 +7,7 @@ it should also run on newer PHP versions now.
 
 # Works on
 Tested with PHP (v5.4) and MySQL (v5.5)
-You can demo this @ http://mvrclabs.info/linktracker/
-
-demo account for this project:
-- user: admin@slt.com
-- pass: 123123
-
+November 15, 2017 updated from MySQL to MySQLi.
 
 # Installation (Web installer)
 You can either use the web installer inside "installer" folder to install it.
